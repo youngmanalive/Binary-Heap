@@ -1,4 +1,7 @@
-class BinaryMinHeap
+# This class defaults to minimum heap.
+# For max heap ----> BinaryHeap.new { |a, b| b <=> a }
+
+class BinaryHeap
   attr_reader :store, :prc
 
   def initialize(&prc)
@@ -13,7 +16,7 @@ class BinaryMinHeap
   def extract
     @store[0], @store[-1], = @store[-1], @store[0]
     element = @store.pop
-    BinaryMinHeap.heapify_down(@store, 0, count, &@prc)
+    BinaryHeap.heapify_down(@store, 0, count, &@prc)
     element
   end
 
@@ -23,7 +26,7 @@ class BinaryMinHeap
 
   def push(val)
     @store << val
-    BinaryMinHeap.heapify_up(@store, count-1, count, &@prc)
+    BinaryHeap.heapify_up(@store, count-1, count, &@prc)
   end
 
   public
